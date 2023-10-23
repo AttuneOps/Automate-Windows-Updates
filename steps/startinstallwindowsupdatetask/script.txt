@@ -1,0 +1,5 @@
+Invoke-WUJob -ComputerName localhost `
+    -Script { "Install-WindowsUpdate -Category 'Security' -Verbose -ForceDownload -ForceInstall -AcceptAll -IgnoreReboot" } `
+    -RunNow -Confirm:$false -Verbose
+
+Get-WUJob

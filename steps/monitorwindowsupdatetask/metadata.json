@@ -1,0 +1,16 @@
+{
+    "actionOnStepFail": null, 
+    "enabled": true, 
+    "externalUuid4": "64730768-4d1f-4ba6-a132-8f0d40855a00", 
+    "interpreter": 2, 
+    "interpreterCommand": "", 
+    "interpreterScriptExt": null, 
+    "interpreterScriptSyntax": "", 
+    "key": "monitorwindowsupdatetask", 
+    "name": "Monitor Windows Update Task", 
+    "osCredKey": "windowsuseradministrator", 
+    "serverKey": "windowsnode", 
+    "successExitCode": 0, 
+    "timeout": 2400, 
+    "type": "com.servertribe.attune.tuples.StepWinRmTuple"
+}

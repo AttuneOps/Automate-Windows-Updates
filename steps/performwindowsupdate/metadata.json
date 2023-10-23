@@ -1,0 +1,24 @@
+{
+    "actionOnStepFail": "stop", 
+    "concurrency": 1, 
+    "enabled": true, 
+    "externalUuid4": "77a96005-d8fb-4d50-9223-df6e3b147631", 
+    "isBlueprint": false, 
+    "key": "performwindowsupdate", 
+    "links": [
+        {
+            "order": 0, 
+            "stepKey": "startinstallwindowsupdatetask"
+        }, 
+        {
+            "order": 50, 
+            "stepKey": "monitorwindowsupdatetask"
+        }, 
+        {
+            "order": 100, 
+            "stepKey": "cleanupwindowsupdatetask"
+        }
+    ], 
+    "name": "Perform Windows Update", 
+    "type": "com.servertribe.attune.tuples.StepGroupTuple"
+}

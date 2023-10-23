@@ -1,0 +1,13 @@
+{
+    "actionOnStepFail": null, 
+    "enabled": true, 
+    "externalUuid4": "3b09b49a-abe9-40e1-8613-5c0a34234999", 
+    "key": "waitforwinrm", 
+    "minDowntime": 2, 
+    "name": "Wait for WinRM", 
+    "postWait": 0, 
+    "preWait": 0, 
+    "serverKey": "windowsnode", 
+    "tcpPort": 5986, 
+    "type": "com.servertribe.attune.tuples.StepTcpPingTuple"
+}

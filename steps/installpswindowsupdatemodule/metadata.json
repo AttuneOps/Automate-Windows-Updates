@@ -1,0 +1,20 @@
+{
+    "actionOnStepFail": "stop", 
+    "concurrency": 1, 
+    "enabled": true, 
+    "externalUuid4": "e2b9534d-7a06-48cc-b78e-7b7562defa19", 
+    "isBlueprint": true, 
+    "key": "installpswindowsupdatemodule", 
+    "links": [
+        {
+            "order": 50, 
+            "stepKey": "installpackagepswindowsupdate"
+        }, 
+        {
+            "order": 100, 
+            "stepKey": "listmissingupdates"
+        }
+    ], 
+    "name": "Install  PSWindowsUpdate Module", 
+    "type": "com.servertribe.attune.tuples.StepGroupTuple"
+}

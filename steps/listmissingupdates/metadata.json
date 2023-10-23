@@ -1,0 +1,16 @@
+{
+    "actionOnStepFail": null, 
+    "enabled": true, 
+    "externalUuid4": "9e2b1031-0b4b-4632-808f-7b9bac9e0946", 
+    "interpreter": 2, 
+    "interpreterCommand": "", 
+    "interpreterScriptExt": null, 
+    "interpreterScriptSyntax": "", 
+    "key": "listmissingupdates", 
+    "name": "List Missing Updates", 
+    "osCredKey": "windowsuseradministrator", 
+    "serverKey": "windowsnode", 
+    "successExitCode": 0, 
+    "timeout": 30, 
+    "type": "com.servertribe.attune.tuples.StepWinRmTuple"
+}

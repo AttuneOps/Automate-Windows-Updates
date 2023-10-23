@@ -1,0 +1,28 @@
+{
+    "actionOnStepFail": "stop", 
+    "concurrency": 1, 
+    "enabled": true, 
+    "externalUuid4": "885ee0f4-ada2-42c1-9468-075886af0869", 
+    "isBlueprint": true, 
+    "key": "patchwindowssecurity", 
+    "links": [
+        {
+            "order": 50, 
+            "stepKey": "listmissingsecurityupdates"
+        }, 
+        {
+            "order": 150, 
+            "stepKey": "performwindowsupdate"
+        }, 
+        {
+            "order": 200, 
+            "stepKey": "rebootmachine"
+        }, 
+        {
+            "order": 250, 
+            "stepKey": "verifythatsecurityupdatesareinstalled"
+        }
+    ], 
+    "name": "Patch Windows - Security", 
+    "type": "com.servertribe.attune.tuples.StepGroupTuple"
+}

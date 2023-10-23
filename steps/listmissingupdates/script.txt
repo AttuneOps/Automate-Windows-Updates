@@ -1,0 +1,14 @@
+# Define a variable to filter for updates
+$SecurityUpdates = Get-WindowsUpdate
+
+# Check if there are missing updates
+if ($SecurityUpdates.Count -gt 0) {
+    Write-Host "Missing Updates:"
+    
+    # List the missing security updates
+    $SecurityUpdates | ForEach-Object {
+        Write-Host "KB$($_.KBArticleID): $($_.Title) | $($_.Size)"
+    }
+} else {
+    Write-Host "No missing updates found."
+}

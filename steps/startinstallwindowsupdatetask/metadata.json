@@ -1,0 +1,16 @@
+{
+    "actionOnStepFail": "stop", 
+    "enabled": true, 
+    "externalUuid4": "0af2f9b8-8b81-4d5f-b5b4-b2b89be66921", 
+    "interpreter": 2, 
+    "interpreterCommand": "", 
+    "interpreterScriptExt": null, 
+    "interpreterScriptSyntax": "", 
+    "key": "startinstallwindowsupdatetask", 
+    "name": "Start Install Windows Update Task", 
+    "osCredKey": "windowsuseradministrator", 
+    "serverKey": "windowsnode", 
+    "successExitCode": 0, 
+    "timeout": 2400, 
+    "type": "com.servertribe.attune.tuples.StepWinRmTuple"
+}

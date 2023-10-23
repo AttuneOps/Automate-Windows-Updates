@@ -1,0 +1,20 @@
+{
+    "actionOnStepFail": null, 
+    "concurrency": 1, 
+    "enabled": true, 
+    "externalUuid4": "42be4724-6ddb-4dee-b37c-d959c95650e4", 
+    "isBlueprint": false, 
+    "key": "rebootmachine", 
+    "links": [
+        {
+            "order": 0, 
+            "stepKey": "shutdownandrestart"
+        }, 
+        {
+            "order": 50, 
+            "stepKey": "waitforwinrm"
+        }
+    ], 
+    "name": "Reboot Machine", 
+    "type": "com.servertribe.attune.tuples.StepGroupTuple"
+}

@@ -1,0 +1,3 @@
+Install-Package -Name PSWindowsUpdate -Verbose -Force
+
+Import-Module -Name PSWindowsUpdate -Verbose
