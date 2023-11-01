@@ -425,14 +425,11 @@ mstsc /admin /v:{windowsnode}
                 <code class="language-sql py-0">
 Get-WUHistory -Last 15
 
-# Define a variable to filter for updates
 $SecurityUpdates = Get-WindowsUpdate -Category &quot;Security&quot;
 
-# Check if there are missing updates
 if ($SecurityUpdates.Count -gt 0) {
     Write-Host &quot;Missing Security Updates:&quot;
     
-    # List the missing security updates
     $SecurityUpdates | ForEach-Object {
         Write-Host &quot;KB$($_.KBArticleID): $($_.Title)&quot;
     }
@@ -579,10 +576,11 @@ Get-WUJob
         <div class="col px-0">
             <pre>
                 <code class="language-sql py-0">
+Get-ScheduledTask -TaskName &quot;PSWindowsUpdate&quot;
 do {
     $scheduledTask = Get-ScheduledTask -TaskName &quot;PSWindowsUpdate&quot;
     Write-Host &quot;PSWindowsUpdate task: $($scheduledTask.State)&quot;
-    Start-Sleep -Seconds 30
+    Start-Sleep -Seconds 10
 } while ($scheduledTask.State -ne &quot;Ready&quot;)
                 </code>
             </pre>
@@ -643,7 +641,7 @@ if ($taskExists) {
     Get-ScheduledTask -TaskName &quot;PSWindowsUpdate&quot;
     Unregister-ScheduledTask -TaskName &quot;PSWindowsUpdate&quot; -Confirm:$false
 } else {
-    Write-Host &quot;PSWindowsUPdate isn&#x27;t listed as a Scheduled Task.&quot;
+    Write-Host &quot;PSWindowsUpdate isn&#x27;t listed as a Scheduled Task.&quot;
 }
                 </code>
             </pre>
@@ -799,6 +797,13 @@ Write-Host &quot;Restarting in $WAIT seconds.&quot;
                         </h3>
                     </div>
 
+                    <div class="row">
+                        <div class="description col px-0">
+                            <p>
+                                
+                            </p>
+                        </div>
+                    </div>
 
 
 
@@ -843,14 +848,11 @@ mstsc /admin /v:{windowsnode}
                 <code class="language-sql py-0">
 Get-WUHistory -Last 15
 
-# Define a variable to filter for updates
 $SecurityUpdates = Get-WindowsUpdate -Category &quot;Security&quot;
 
-# Check if there are missing updates
 if ($SecurityUpdates.Count -gt 0) {
     Write-Host &quot;Missing Security Updates:&quot;
     
-    # List the missing security updates
     $SecurityUpdates | ForEach-Object {
         Write-Host &quot;KB$($_.KBArticleID): $($_.Title)&quot;
     }

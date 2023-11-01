@@ -1,13 +1,10 @@
 Get-WUHistory -Last 15
 
-# Define a variable to filter for updates
 $SecurityUpdates = Get-WindowsUpdate -Category "Security"
 
-# Check if there are missing updates
 if ($SecurityUpdates.Count -gt 0) {
     Write-Host "Missing Security Updates:"
     
-    # List the missing security updates
     $SecurityUpdates | ForEach-Object {
         Write-Host "KB$($_.KBArticleID): $($_.Title)"
     }

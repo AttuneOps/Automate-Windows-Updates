@@ -1,5 +1,6 @@
+Get-ScheduledTask -TaskName "PSWindowsUpdate"
 do {
     $scheduledTask = Get-ScheduledTask -TaskName "PSWindowsUpdate"
     Write-Host "PSWindowsUpdate task: $($scheduledTask.State)"
-    Start-Sleep -Seconds 30
+    Start-Sleep -Seconds 10
 } while ($scheduledTask.State -ne "Ready")

@@ -4,5 +4,5 @@ if ($taskExists) {
     Get-ScheduledTask -TaskName "PSWindowsUpdate"
     Unregister-ScheduledTask -TaskName "PSWindowsUpdate" -Confirm:$false
 } else {
-    Write-Host "PSWindowsUPdate isn't listed as a Scheduled Task."
+    Write-Host "PSWindowsUpdate isn't listed as a Scheduled Task."
 }
