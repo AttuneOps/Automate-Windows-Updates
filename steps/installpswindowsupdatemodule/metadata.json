@@ -7,8 +7,8 @@
     "key": "installpswindowsupdatemodule", 
     "links": [
         {
-            "order": 50, 
-            "stepKey": "installpackagepswindowsupdate"
+            "order": 0, 
+            "stepKey": "checkifpswindowsupdatemoduleisinstalled"
         }, 
         {
             "order": 100, 

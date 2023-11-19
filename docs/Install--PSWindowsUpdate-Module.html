@@ -206,8 +206,8 @@
         
 
                     <p class="text-muted pt-2">
-                        <a href="#installpackagepswindowsupdate">
-                            <strong>Step 1 -</strong> Install Package PSWindowsUpdate
+                        <a href="#checkifpswindowsupdatemoduleisinstalled">
+                            <strong>Step 1 -</strong> Check if PSWindowsUpdate module is installed
                         </a>
                     </p>
 
@@ -309,20 +309,13 @@
 
 
                     <div class="row pt-5">
-                        <h3 id="installpackagepswindowsupdate">
-                            <a href="#installpackagepswindowsupdate">
-                                <strong>Step 1 -</strong> Install Package PSWindowsUpdate
+                        <h3 id="checkifpswindowsupdatemoduleisinstalled">
+                            <a href="#checkifpswindowsupdatemoduleisinstalled">
+                                <strong>Step 1 -</strong> Check if PSWindowsUpdate module is installed
                             </a>
                         </h3>
                     </div>
 
-                    <div class="row">
-                        <div class="description col px-0">
-                            <p>
-                                
-                            </p>
-                        </div>
-                    </div>
 
 
 
@@ -365,9 +358,15 @@ mstsc /admin /v:{windowsnode}
         <div class="col px-0">
             <pre>
                 <code class="language-sql py-0">
-Install-Package -Name PSWindowsUpdate -Verbose -Force
+$module = Get-Module -ListAvailable -Name PSWindowsUpdate
 
-Import-Module -Name PSWindowsUpdate -Verbose
+if (-not $module) {
+    Install-Module -Name PSWindowsUpdate -Force -Verbose
+
+    Import-Module PSWindowsUpdate
+} else {
+    Write-Output &quot;PSWindowsUpdate module is already installed.&quot;
+}
                 </code>
             </pre>
         </div>

@@ -11,6 +11,6 @@
     "osCredKey": "windowsuseradministrator", 
     "serverKey": "windowsnode", 
     "successExitCode": 0, 
-    "timeout": 2400, 
+    "timeout": 30, 
     "type": "com.servertribe.attune.tuples.StepWinRmTuple"
 }
