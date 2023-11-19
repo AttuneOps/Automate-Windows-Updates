@@ -4,11 +4,11 @@
     "enabled": true, 
     "externalUuid4": "77a96005-d8fb-4d50-9223-df6e3b147631", 
     "isBlueprint": false, 
-    "key": "performwindowsupdate", 
+    "key": "performwindowsupdateforsecurityupdates", 
     "links": [
         {
             "order": 0, 
-            "stepKey": "startinstallwindowsupdatetask"
+            "stepKey": "startinstallwindowsupdatetaskforsecurityupdates"
         }, 
         {
             "order": 50, 
@@ -19,6 +19,6 @@
             "stepKey": "cleanupwindowsupdatetask"
         }
     ], 
-    "name": "Perform Windows Update", 
+    "name": "Perform Windows Update for Security Updates", 
     "type": "com.servertribe.attune.tuples.StepGroupTuple"
 }
