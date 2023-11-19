@@ -1,16 +1,16 @@
 {
-    "actionOnStepFail": "stop", 
+    "actionOnStepFail": null, 
     "enabled": true, 
-    "externalUuid4": "23d7c864-ce0c-47c1-a669-f9823ae81dd6", 
+    "externalUuid4": "08a22213-a217-4575-b9cc-7e1817d95ca9", 
     "interpreter": 2, 
     "interpreterCommand": "", 
     "interpreterScriptExt": null, 
     "interpreterScriptSyntax": "", 
-    "key": "verifythatsecurityupdatesareinstalled", 
-    "name": "Verify that security updates are installed", 
+    "key": "checkifpswindowsupdatemoduleisinstalled", 
+    "name": "Check if PSWindowsUpdate module is installed", 
     "osCredKey": "windowsuseradministrator", 
     "serverKey": "windowsnode", 
     "successExitCode": 0, 
-    "timeout": 60, 
+    "timeout": 5, 
     "type": "com.servertribe.attune.tuples.StepWinRmTuple"
 }

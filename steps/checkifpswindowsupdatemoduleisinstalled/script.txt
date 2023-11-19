@@ -1,0 +1,9 @@
+$module = Get-Module -ListAvailable -Name PSWindowsUpdate
+
+if (-not $module) {
+    Install-Module -Name PSWindowsUpdate -Force -Verbose
+
+    Import-Module PSWindowsUpdate
+} else {
+    Write-Output "PSWindowsUpdate module is already installed."
+}

@@ -206,8 +206,16 @@
         
 
                     <p class="text-muted pt-2">
+                        <a href="#checkifpswindowsupdatemoduleisinstalled">
+                            <strong>Step 1 -</strong> Check if PSWindowsUpdate module is installed
+                        </a>
+                    </p>
+
+        
+
+                    <p class="text-muted pt-2">
                         <a href="#listmissingsecurityupdates">
-                            <strong>Step 1 -</strong> List Missing Security Updates
+                            <strong>Step 2 -</strong> List Missing Security Updates
                         </a>
                     </p>
 
@@ -215,7 +223,7 @@
 
                     <p class="text-muted pt-2">
                         <a href="#performwindowsupdate">
-                            <strong>Step 2 -</strong> Perform Windows Update
+                            <strong>Step 3 -</strong> Perform Windows Update
                         </a>
                     </p>
     
@@ -223,7 +231,7 @@
 
                     <p class="text-muted pt-2">
                         <a href="#startinstallwindowsupdatetask">
-                            <strong>Step 2.1 -</strong> Start Install Windows Update Task
+                            <strong>Step 3.1 -</strong> Start Install Windows Update Task
                         </a>
                     </p>
 
@@ -231,7 +239,7 @@
 
                     <p class="text-muted pt-2">
                         <a href="#monitorwindowsupdatetask">
-                            <strong>Step 2.2 -</strong> Monitor Windows Update Task
+                            <strong>Step 3.2 -</strong> Monitor Windows Update Task
                         </a>
                     </p>
 
@@ -239,7 +247,7 @@
 
                     <p class="text-muted pt-2">
                         <a href="#cleanupwindowsupdatetask">
-                            <strong>Step 2.3 -</strong> Cleanup Windows Update Task
+                            <strong>Step 3.3 -</strong> Cleanup Windows Update Task
                         </a>
                     </p>
 
@@ -248,7 +256,7 @@
 
                     <p class="text-muted pt-2">
                         <a href="#rebootmachine">
-                            <strong>Step 3 -</strong> Reboot Machine
+                            <strong>Step 4 -</strong> Reboot Machine
                         </a>
                     </p>
     
@@ -256,7 +264,7 @@
 
                     <p class="text-muted pt-2">
                         <a href="#shutdownandrestart">
-                            <strong>Step 3.1 -</strong> Shutdown and Restart
+                            <strong>Step 4.1 -</strong> Shutdown and Restart
                         </a>
                     </p>
 
@@ -264,7 +272,7 @@
 
                     <p class="text-muted pt-2">
                         <a href="#waitforwinrm">
-                            <strong>Step 3.2 -</strong> Wait for WinRM
+                            <strong>Step 4.2 -</strong> Wait for WinRM
                         </a>
                     </p>
 
@@ -273,7 +281,7 @@
 
                     <p class="text-muted pt-2">
                         <a href="#verifythatsecurityupdatesareinstalled">
-                            <strong>Step 4 -</strong> Verify that security updates are installed
+                            <strong>Step 5 -</strong> Verify that security updates are installed
                         </a>
                     </p>
 
@@ -367,20 +375,13 @@
 
 
                     <div class="row pt-5">
-                        <h3 id="listmissingsecurityupdates">
-                            <a href="#listmissingsecurityupdates">
-                                <strong>Step 1 -</strong> List Missing Security Updates
+                        <h3 id="checkifpswindowsupdatemoduleisinstalled">
+                            <a href="#checkifpswindowsupdatemoduleisinstalled">
+                                <strong>Step 1 -</strong> Check if PSWindowsUpdate module is installed
                             </a>
                         </h3>
                     </div>
 
-                    <div class="row">
-                        <div class="description col px-0">
-                            <p>
-                                
-                            </p>
-                        </div>
-                    </div>
 
 
 
@@ -408,6 +409,68 @@ mstsc /admin /v:{windowsnode}
                             </p>
                         </div>
 
+
+
+    
+
+
+
+    <div class="row">
+        <p>
+            Execute the following script:
+        </p>
+    </div>
+    <div class="row">
+        <div class="col px-0">
+            <pre>
+                <code class="language-sql py-0">
+$module = Get-Module -ListAvailable -Name PSWindowsUpdate
+
+if (-not $module) {
+    Install-Module -Name PSWindowsUpdate -Force -Verbose
+
+    Import-Module PSWindowsUpdate
+} else {
+    Write-Output &quot;PSWindowsUpdate module is already installed.&quot;
+}
+                </code>
+            </pre>
+        </div>
+    </div>
+
+
+
+
+
+        
+
+
+
+                    <div class="row pt-5">
+                        <h3 id="listmissingsecurityupdates">
+                            <a href="#listmissingsecurityupdates">
+                                <strong>Step 2 -</strong> List Missing Security Updates
+                            </a>
+                        </h3>
+                    </div>
+
+                    <div class="row">
+                        <div class="description col px-0">
+                            <p>
+                                
+                            </p>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+    
 
 
     
@@ -452,7 +515,7 @@ if ($SecurityUpdates.Count -gt 0) {
                     <div class="row pt-5">
                         <h3 id="performwindowsupdate">
                             <a href="#performwindowsupdate">
-                                <strong>Step 2 -</strong> Perform Windows Update
+                                <strong>Step 3 -</strong> Perform Windows Update
                             </a>
                         </h3>
                     </div>
@@ -481,7 +544,7 @@ if ($SecurityUpdates.Count -gt 0) {
                     <div class="row pt-5">
                         <h4 id="startinstallwindowsupdatetask">
                             <a href="#startinstallwindowsupdatetask">
-                                <strong>Step 2.1 -</strong> Start Install Windows Update Task
+                                <strong>Step 3.1 -</strong> Start Install Windows Update Task
                             </a>
                         </h4>
                     </div>
@@ -539,7 +602,7 @@ Get-WUJob
                     <div class="row pt-5">
                         <h4 id="monitorwindowsupdatetask">
                             <a href="#monitorwindowsupdatetask">
-                                <strong>Step 2.2 -</strong> Monitor Windows Update Task
+                                <strong>Step 3.2 -</strong> Monitor Windows Update Task
                             </a>
                         </h4>
                     </div>
@@ -598,7 +661,7 @@ do {
                     <div class="row pt-5">
                         <h4 id="cleanupwindowsupdatetask">
                             <a href="#cleanupwindowsupdatetask">
-                                <strong>Step 2.3 -</strong> Cleanup Windows Update Task
+                                <strong>Step 3.3 -</strong> Cleanup Windows Update Task
                             </a>
                         </h4>
                     </div>
@@ -660,7 +723,7 @@ if ($taskExists) {
                     <div class="row pt-5">
                         <h3 id="rebootmachine">
                             <a href="#rebootmachine">
-                                <strong>Step 3 -</strong> Reboot Machine
+                                <strong>Step 4 -</strong> Reboot Machine
                             </a>
                         </h3>
                     </div>
@@ -689,7 +752,7 @@ if ($taskExists) {
                     <div class="row pt-5">
                         <h4 id="shutdownandrestart">
                             <a href="#shutdownandrestart">
-                                <strong>Step 3.1 -</strong> Shutdown and Restart
+                                <strong>Step 4.1 -</strong> Shutdown and Restart
                             </a>
                         </h4>
                     </div>
@@ -745,7 +808,7 @@ Write-Host &quot;Restarting in $WAIT seconds.&quot;
                     <div class="row pt-5">
                         <h4 id="waitforwinrm">
                             <a href="#waitforwinrm">
-                                <strong>Step 3.2 -</strong> Wait for WinRM
+                                <strong>Step 4.2 -</strong> Wait for WinRM
                             </a>
                         </h4>
                     </div>
@@ -792,7 +855,7 @@ Write-Host &quot;Restarting in $WAIT seconds.&quot;
                     <div class="row pt-5">
                         <h3 id="verifythatsecurityupdatesareinstalled">
                             <a href="#verifythatsecurityupdatesareinstalled">
-                                <strong>Step 4 -</strong> Verify that security updates are installed
+                                <strong>Step 5 -</strong> Verify that security updates are installed
                             </a>
                         </h3>
                     </div>

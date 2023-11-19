@@ -7,6 +7,10 @@
     "key": "patchwindowssecurity", 
     "links": [
         {
+            "order": 0, 
+            "stepKey": "checkifpswindowsupdatemoduleisinstalled"
+        }, 
+        {
             "order": 50, 
             "stepKey": "listmissingsecurityupdates"
         }, 
