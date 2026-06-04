@@ -1,0 +1,39 @@
+$taskName = "PSWindowsUpdate"
+
+Write-Output "============================================================"
+Write-Output "  CLEANUP OS UPDATE TASK"
+Write-Output "============================================================"
+Write-Output "  Server    : $env:COMPUTERNAME"
+Write-Output "  Task      : $taskName"
+Write-Output "  Timestamp : $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
+Write-Output "============================================================"
+Write-Output ""
+
+$task = Get-ScheduledTask -TaskName $taskName -ErrorAction SilentlyContinue
+
+if ($null -eq $task) {
+    Write-Output "Task '$taskName' not found. Nothing to clean up."
+    exit 0
+}
+
+Write-Output "Task found:"
+Write-Output "  Name      : $($task.TaskName)"
+Write-Output "  State     : $($task.State)"
+Write-Output "  Path      : $($task.TaskPath)"
+Write-Output ""
+
+Unregister-ScheduledTask -TaskName $taskName -Confirm:$false
+Write-Output "Task '$taskName' unregistered."
+Write-Output ""
+
+$rebootKey = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\RebootRequired"
+$cbsKey    = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Component Based Servicing\RebootPending"
+$rebootPending = (Test-Path $rebootKey) -or (Test-Path $cbsKey)
+
+Write-Output "Reboot pending : $rebootPending"
+if ($rebootPending) {
+    Write-Output "ACTION: Schedule a maintenance window reboot to complete update installation."
+}
+
+Write-Output ""
+Write-Output "Cleanup complete. Timestamp: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"

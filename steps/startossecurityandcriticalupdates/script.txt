@@ -1,0 +1,58 @@
+Import-Module PSWindowsUpdate
+
+$excludePattern = "Feature update|Upgrade to"
+
+Write-Output "============================================================"
+Write-Output "  INSTALL OS SECURITY AND CRITICAL UPDATES"
+Write-Output "============================================================"
+Write-Output "  Server    : $env:COMPUTERNAME"
+Write-Output "  Timestamp : $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
+Write-Output "============================================================"
+Write-Output ""
+
+$available = Get-WindowsUpdate `
+    -Category "Security Updates", "Critical Updates" `
+    -NotTitle $excludePattern `
+    -ErrorAction SilentlyContinue
+
+if ($null -eq $available -or $available.Count -eq 0) {
+    Write-Output "No OS security or critical updates available."
+    Write-Output "Skipping install -- server is up to date."
+    exit 0
+}
+
+Write-Output "Updates queued for install: $($available.Count)"
+Write-Output ""
+$available | ForEach-Object {
+    $severity = if ([string]::IsNullOrWhiteSpace($_.MsrcSeverity)) { "Unrated" } else { $_.MsrcSeverity }
+    $size     = if ($_.MaxDownloadSize -gt 0) { "$([math]::Round($_.MaxDownloadSize / 1MB))MB" } else { "Unknown size" }
+    Write-Output "  [$severity] $($_.Title) ($size)"
+}
+Write-Output ""
+
+$modulePath = (Get-Module -ListAvailable -Name PSWindowsUpdate | Select-Object -First 1).ModuleBase
+Write-Output "PSWindowsUpdate module path: $modulePath"
+
+$installCommand = "Import-Module '$modulePath'; Install-WindowsUpdate -Category 'Security Updates','Critical Updates' -NotTitle 'Feature update|Upgrade to' -AcceptAll -IgnoreReboot -Confirm:`$false"
+
+Invoke-WUJob -ComputerName localhost `
+    -Script ([scriptblock]::Create($installCommand)) `
+    -RunNow -Confirm:$false -Verbose
+
+Write-Output ""
+Write-Output "PSWindowsUpdate job registered and started."
+
+$job = Get-WUJob
+if ($null -ne $job) {
+    Write-Output ""
+    Write-Output "Scheduled task registered:"
+    $job | ForEach-Object {
+        Write-Output "  Computer : $($_.ComputerName)"
+        Write-Output "  Task     : $($_.Name)"
+        Write-Output "  Action   : $($_.Action)"
+    }
+}
+
+Write-Output ""
+Write-Output "Proceed to monitor step."
+Write-Output "Start timestamp: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"

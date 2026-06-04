@@ -8,7 +8,8 @@ if ($SecurityUpdates.Count -gt 0) {
     $SecurityUpdates | ForEach-Object {
         Write-Host "KB$($_.KBArticleID): $($_.Title)"
     }
-    Write-Error "Please investigate why the security updates were not installed."
+    Write-Host "Please investigate why the security updates were not installed."
+    exit 1
 } else {
     Write-Host "Success! All security updates are installed."
 }

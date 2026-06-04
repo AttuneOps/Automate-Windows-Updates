@@ -1,0 +1,57 @@
+$taskName       = "PSWindowsUpdate"
+$timeoutSeconds = 2400
+$pollSeconds    = 10
+$elapsed        = 0
+
+Write-Output "============================================================"
+Write-Output "  MONITORING OS UPDATE TASK"
+Write-Output "============================================================"
+Write-Output "  Server    : $env:COMPUTERNAME"
+Write-Output "  Task      : $taskName"
+Write-Output "  Timeout   : $timeoutSeconds seconds"
+Write-Output "  Started   : $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
+Write-Output "============================================================"
+Write-Output ""
+
+$task = Get-ScheduledTask -TaskName $taskName -ErrorAction SilentlyContinue
+
+if ($null -eq $task) {
+    Write-Output "Task '$taskName' not found -- completed before monitor started."
+    Write-Output "Completed : $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
+    exit 0
+}
+
+Write-Output "Initial task state: $($task.State)"
+Write-Output ""
+
+do {
+    $task = Get-ScheduledTask -TaskName $taskName -ErrorAction SilentlyContinue
+
+    if ($null -eq $task) {
+        Write-Output "[$($elapsed)s] Task no longer exists -- completed."
+        break
+    }
+
+    Write-Output "[$($elapsed)s] $taskName : $($task.State)"
+
+    if ($task.State -eq "Ready") {
+        break
+    }
+
+    Start-Sleep -Seconds $pollSeconds
+    $elapsed += $pollSeconds
+
+} while ($elapsed -lt $timeoutSeconds)
+
+Write-Output ""
+
+if ($elapsed -ge $timeoutSeconds -and $task.State -ne "Ready") {
+    Write-Output "TIMEOUT: Task did not complete within $timeoutSeconds seconds."
+    Write-Output "Final task state : $($task.State)"
+    Write-Output "Elapsed          : $elapsed seconds"
+    exit 1
+}
+
+Write-Output "Task reached Ready state."
+Write-Output "Elapsed   : $elapsed seconds"
+Write-Output "Completed : $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"

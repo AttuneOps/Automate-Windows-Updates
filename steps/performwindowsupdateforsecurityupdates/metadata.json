@@ -3,20 +3,17 @@
     "concurrency": 1, 
     "enabled": true, 
     "externalUuid4": "77a96005-d8fb-4d50-9223-df6e3b147631", 
-    "isBlueprint": false, 
+    "isBlueprint": true, 
     "key": "performwindowsupdateforsecurityupdates", 
     "links": [
         {
-            "order": 0, 
-            "stepKey": "startinstallwindowsupdatetaskforsecurityupdates"
+            "stepKey": "startossecurityandcriticalupdates"
         }, 
         {
-            "order": 50, 
-            "stepKey": "monitorwindowsupdatetask"
+            "stepKey": "monitorosupdatetask"
         }, 
         {
-            "order": 100, 
-            "stepKey": "cleanupwindowsupdatetask"
+            "stepKey": "cleanupupdatetask"
         }
     ], 
     "name": "Perform Windows Update for Security Updates", 

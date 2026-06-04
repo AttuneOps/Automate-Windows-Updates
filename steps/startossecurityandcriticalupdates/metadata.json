@@ -1,16 +1,16 @@
 {
-    "actionOnStepFail": null, 
+    "actionOnStepFail": "stop", 
     "enabled": true, 
-    "externalUuid4": "64730768-4d1f-4ba6-a132-8f0d40855a00", 
+    "externalUuid4": "0af2f9b8-8b81-4d5f-b5b4-b2b89be66921", 
     "interpreter": 2, 
     "interpreterCommand": "", 
     "interpreterScriptExt": null, 
     "interpreterScriptSyntax": "", 
-    "key": "monitorwindowsupdatetask", 
-    "name": "Monitor Windows Update Task", 
+    "key": "startossecurityandcriticalupdates", 
+    "name": "Start OS Security and Critical Updates", 
     "osCredKey": "windowsuseradministrator", 
     "serverKey": "windowsnode", 
     "successExitCode": 0, 
-    "timeout": 2400, 
+    "timeout": 120, 
     "type": "com.servertribe.attune.tuples.StepWinRmTuple"
 }

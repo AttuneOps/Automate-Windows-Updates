@@ -1,8 +1,25 @@
-$module = Get-Module -ListAvailable -Name PSWindowsUpdate
+$moduleName = "PSWindowsUpdate"
+$module = Get-Module -ListAvailable -Name $moduleName
 
-if (-not $module) {
-    Install-Package -Name PSWindowsUpdate -Verbose -Force
-    Import-Module -Name PSWindowsUpdate -Verbose
-} else {
-    Write-Output "PSWindowsUpdate module is already installed."
+if ($null -ne $module) {
+    Write-Output "PSWindowsUpdate module version $($module.Version) is already installed."
+    exit 0
 }
+
+Write-Output "PSWindowsUpdate not found. Installing from PSGallery..."
+
+Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force | Out-Null
+
+Install-Module -Name $moduleName `
+    -Force `
+    -Scope AllUsers `
+    -SkipPublisherCheck `
+    -AllowClobber
+
+$installed = Get-Module -ListAvailable -Name $moduleName
+if ($null -eq $installed) {
+    Write-Error "PSWindowsUpdate installation failed."
+    exit 1
+}
+
+Write-Output "PSWindowsUpdate version $($installed.Version) installed successfully."
